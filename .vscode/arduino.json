@@ -1,5 +1,6 @@
 {
     "board": "arduino:avr:uno",
     "programmer": "arduino:arduinoisp",
-    "sketch": "點陣顯示器/dot_display/dot_display.ino"
+    "sketch": "點陣顯示器/dot_display/dot_display.ino",
+    "port": "/dev/ttyACM0"
 }
