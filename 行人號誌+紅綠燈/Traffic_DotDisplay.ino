@@ -107,6 +107,11 @@ void setup()
     pinMode(RED_LED_PIN, OUTPUT);       // 設定LED_RED的PIN腳為輸出
     pinMode(YELLOW_LED_PIN, OUTPUT);    // 設定LED_YELLOW的PIN腳為輸出
     pinMode(BUTTON_PIN, INPUT_PULLUP);  // 設定按鈕的接腳為輸入，因為我們要讀取它的狀態
+    for(int row=0; row<8; row++){
+            {
+                dot_Led.setRow(0, row, dot_Led_control[8][row]);
+            }
+        }  
 }
 void loop()
 {
