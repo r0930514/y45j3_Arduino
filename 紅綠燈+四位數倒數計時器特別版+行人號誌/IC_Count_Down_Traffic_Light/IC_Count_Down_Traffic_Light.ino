@@ -113,14 +113,14 @@ void Seven_Write(byte NM)
   	myLedDisplay.setNumber(NM);  //顯示數字內容
 		delay(4);
     time = time +4;
-    if (time % 124 == 0 and NM > 3)
+    if (time % 124 == 0 and NM > 5)
     {
       animation = time / 124 -1;
       for(int row=0; row<8; row++){
         dot_Led.setRow(0, row, dot_Led_control[animation][row]);
       }
     }
-    if (time % 62 == 0 and NM < 4)
+    if (time % 62 == 0 and NM < 6)
       {
         fastAnimation = time / 62 -1;
         if (fastAnimation > 8)
@@ -177,13 +177,13 @@ void loop() {
         digitalWrite(YELLOW_LED_PIN, 0);       //LED_YELLOW關閉
         digitalWrite(RED_LED_PIN, HIGH);       //LED_RED開啟
         delay(2000);
-        for(int i=10; i>0; i--){
+        for(int i=15; i>0; i--){
             Seven_Write(i);
         }
         for(int row=0; row<8; row++){
           dot_Led.setRow(0, row, dot_Led_control[8][row]);
         }     
-        delay(1000);               
+        delay(3000);               
         digitalWrite(RED_LED_PIN, 0);          //LED_RED關閉
 }
 }
