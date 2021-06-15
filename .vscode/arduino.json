@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
     "programmer": "arduino:arduinoisp",
-    "sketch": "行人號誌+紅綠燈/Traffic_DotDisplay.ino",
+    "sketch": "紅綠燈+四位數倒數計時器特別版+行人號誌/IC_Count_Down_Traffic_Light/IC_Count_Down_Traffic_Light.ino",
     "port": "/dev/ttyACM0"
 }
