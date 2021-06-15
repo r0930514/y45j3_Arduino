@@ -106,25 +106,37 @@ void Seven_Write(byte NM)
 {
   int time = 0;
   int animation = 0;
+  int fastAnimation =0;
     while (1)
     {
 		myLedDisplay.loopShow();	// 每一次loop都要呼叫這個函式
   	myLedDisplay.setNumber(NM);  //顯示數字內容
-		delay(5);
-    time = time +5;
-    if (time % 125 == 0)
+		delay(4);
+    time = time +4;
+    if (time % 124 == 0 and NM > 3)
     {
-      animation = time / 125 -1;
+      animation = time / 124 -1;
       for(int row=0; row<8; row++){
-          dot_Led.setRow(0, row, dot_Led_control[animation][row]);
+        dot_Led.setRow(0, row, dot_Led_control[animation][row]);
       }
     }
+    if (time % 62 == 0 and NM < 4)
+      {
+        fastAnimation = time / 62 -1;
+        if (fastAnimation > 8)
+        {
+          fastAnimation = fastAnimation -8;
+        }
+        
+        for(int row=0; row<8; row++){
+          dot_Led.setRow(0, row, dot_Led_control[fastAnimation][row]);
+        }
+      }
     
-    if (time >1000)
+    if (time >992)
     {
       break;
     }
-    
     }
 }
 
@@ -137,15 +149,12 @@ void setup() {
     pinMode(RED_LED_PIN, OUTPUT);       // 設定LED_RED的PIN腳為輸出
     pinMode(YELLOW_LED_PIN, OUTPUT);    // 設定LED_YELLOW的PIN腳為輸出
     pinMode(BUTTON_PIN, INPUT_PULLUP);  // 設定按鈕的接腳為輸入，因為我們要讀取它的狀態
+    myLedDisplay.setDecimalPoint(0);
 }
 
 
 void loop() {
-
-	
-
 	buttonState = digitalRead(BUTTON_PIN);   //讀取按鍵的狀態 
-
     if(buttonState == 0){                  //如果按鈕按下
         digitalWrite(GREEN_LED_PIN, 0);        //LED_GREEN關閉
         digitalWrite(RED_LED_PIN, 0);          //LED_RED關閉
