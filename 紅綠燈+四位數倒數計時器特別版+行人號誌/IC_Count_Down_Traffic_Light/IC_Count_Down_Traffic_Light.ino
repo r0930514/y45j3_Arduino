@@ -14,6 +14,7 @@ int buttonState = 0; //按鈕狀態變數
 LedControl dot_Led = LedControl(data_pin, clk_pin, cs_pin, 1);
 Led4digit74HC595 myLedDisplay(A2, A1, A0);	// 接腳:(SCLK, RCLK, DIO)
 
+
 //小綠人
 const uint64_t dot_Led_control [] = {
   0x66442c181e0c0606, //0
@@ -78,8 +79,7 @@ void Seven_Write(byte NM)
     }
     if (time >2000)
     {
-      myLedDisplay.loopShow();	// 每一次loop都要呼叫這個函式
-      myLedDisplay.setNumber(0);
+      myLedDisplay.sleep();
       break;
     }
     }
@@ -95,7 +95,6 @@ void setup() {
     pinMode(YELLOW_LED_PIN, OUTPUT);    // 設定LED_YELLOW的PIN腳為輸出
     pinMode(BUTTON_PIN, INPUT_PULLUP);  // 設定按鈕的接腳為輸入，因為我們要讀取它的狀態
     myLedDisplay.setDecimalPoint(0);
-    myLedDisplay.setNumber(0);
     dotLedCortrol(dot_Led_control[16]);
 }
 
@@ -103,10 +102,10 @@ void setup() {
 void loop() {
 	buttonState = digitalRead(BUTTON_PIN);   //讀取按鍵的狀態 
     if(buttonState == 1){                  //如果按鈕沒被按下
-        dotLedCortrol(dot_Led_control[16]); //行人號誌：停止 
         digitalWrite(GREEN_LED_PIN, 0);        //LED_GREEN關閉
         digitalWrite(RED_LED_PIN, 0);          //LED_RED關閉
         digitalWrite(YELLOW_LED_PIN, HIGH);    //LED_YELLOW開啟
+        dotLedCortrol(dot_Led_control[16]); //行人號誌：停止 
         delay (1000);                          //延遲1秒
         dot_Led.clearDisplay(0);
         digitalWrite(YELLOW_LED_PIN, 0);       //LED_YELLOW關閉
