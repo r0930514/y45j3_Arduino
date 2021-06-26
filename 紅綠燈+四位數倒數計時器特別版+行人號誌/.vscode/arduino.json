@@ -1,0 +1,6 @@
+{
+    "port": "/dev/ttyACM0",
+    "board": "arduino:avr:uno",
+    "programmer": "arduino:arduinoasisp",
+    "sketch": "IC_Count_Down_Traffic_Light/IC_Count_Down_Traffic_Light.ino"
+}
