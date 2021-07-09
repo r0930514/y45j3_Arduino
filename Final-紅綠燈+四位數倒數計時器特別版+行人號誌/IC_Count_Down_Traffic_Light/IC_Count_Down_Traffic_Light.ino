@@ -13,6 +13,7 @@ int YELLOW_LED_PIN =  4;  // 設定LED_YELLOW的接腳為4號腳位
 int buttonState = 0;
 Led4digit74HC595 myLedDisplay(A2, A1, A0);	// 接腳:(SCLK, RCLK, DIO)
 
+
 //小綠人動畫
 byte dot_Led_control [9][8] = {
 {
@@ -111,18 +112,18 @@ void Seven_Write(byte NM)
     {
 		myLedDisplay.loopShow();	// 每一次loop都要呼叫這個函式
   	myLedDisplay.setNumber(NM);  //顯示數字內容
-		delay(4);
-    time = time +4;
-    if (time % 124 == 0 and NM > 5)
+		delay(1);
+    time = time +2;
+    if (time % 250 == 0 and NM > 5)
     {
-      animation = time / 124 -1;
+      animation = time / 250 -1;
       for(int row=0; row<8; row++){
         dot_Led.setRow(0, row, dot_Led_control[animation][row]);
       }
     }
-    if (time % 62 == 0 and NM < 6)
+    if (time % 125 == 0 and NM < 6)
       {
-        fastAnimation = time / 62 -1;
+        fastAnimation = time / 125 -1;
         if (fastAnimation > 8)
         {
           fastAnimation = fastAnimation -8;
@@ -133,7 +134,7 @@ void Seven_Write(byte NM)
         }
       }
     
-    if (time >992)
+    if (time >2000)
     {
       break;
     }
