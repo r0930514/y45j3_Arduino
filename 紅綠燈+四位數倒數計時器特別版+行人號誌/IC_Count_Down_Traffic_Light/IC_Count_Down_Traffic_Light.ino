@@ -155,7 +155,7 @@ void setup() {
 
 void loop() {
 	buttonState = digitalRead(BUTTON_PIN);   //讀取按鍵的狀態 
-    if(buttonState == 0){                  //如果按鈕按下
+    if(buttonState == 1){                  //如果按鈕沒被按下
         digitalWrite(GREEN_LED_PIN, 0);        //LED_GREEN關閉
         digitalWrite(RED_LED_PIN, 0);          //LED_RED關閉
         digitalWrite(YELLOW_LED_PIN, HIGH);    //LED_YELLOW開啟
